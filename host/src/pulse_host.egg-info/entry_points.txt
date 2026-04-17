@@ -1,0 +1,6 @@
+[console_scripts]
+pulse-host = pulse_host.cli:main
+pulse-host-gui = pulse_host.gui:main
+pulse-host-qt-designer = pulse_host.qt_designer:main
+pulse-host-qt-preview = pulse_host.qt_preview:main
+pulse-pdf = pulse_host.pdf_cli:main

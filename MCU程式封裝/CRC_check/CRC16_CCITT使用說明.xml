@@ -1,0 +1,11 @@
+注意，丟進CRC16_CCITT_Check的資料型別為char，並且包含起始符號$，但不包含結尾符號\n
+char rxCmd[] = "$PCA8575_IO I2C1 0x20 7 1* E532 ";
+if (CRC16_CCITT_Check(rxCmd))
+{
+CDC_Printf("CRC OK\r\n");
+}
+else
+{
+CDC_Printf("CRC ERROR\r\n");
+}
+HAL_Delay(1000);

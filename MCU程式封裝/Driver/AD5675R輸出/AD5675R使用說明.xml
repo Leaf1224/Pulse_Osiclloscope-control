@@ -1,0 +1,7 @@
+AD5675R_SetVoltage(&hi2c1, 0x0C, 1, 0, 1.0f);
+PC給:AD5675R_SET_VOLTAGE I2C1 0x0C 1 0 1.0
+(第幾條I2C, AD5675R地址, GAIN設定, DAC編號, 設定電壓(float))
+
+GAIN設定選項:
+0=2.5V
+1=5V

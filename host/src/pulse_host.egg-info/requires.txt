@@ -1,0 +1,9 @@
+pyserial>=3.5
+pyvisa>=1.14.1
+pypdf>=4.2.0
+pymupdf>=1.24.0
+pytesseract>=0.3.13
+pillow>=10.4.0
+
+[qt]
+PySide6>=6.8

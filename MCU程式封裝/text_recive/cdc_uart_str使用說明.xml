@@ -1,0 +1,18 @@
+將Parser_PushBytes(Buf,*Len);放在usbd_cdc_if.c的CDC_Receive_FS內
+main內
+
+初始化一次
+parser_init();
+
+測試時while裡面放
+if (parser_poll())
+	          {
+	              // 收到完整字串，用 USB CDC 回傳到 PC
+		  	  	  const char *packet;
+		  	  	  packet = parser_get_packet();
+	              CDC_Printf("MCU received: %s", packet);
+	          }
+
+Hercules輸入
+24 50 43 41 38 35 37 35 5F 49 4F 20 49 32 43 31 20 30 78 32 30 20 37 20 31 2A 20 45 35 33 32 0A
+MCU回傳MCU received: $PCA8575_IO I2C1 0x20 7 1* E532

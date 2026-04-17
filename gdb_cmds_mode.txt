@@ -1,0 +1,14 @@
+set pagination off
+set confirm off
+target extended-remote :3333
+monitor reset halt
+tbreak HAL_Delay
+continue
+printf "\n--- HAL_Delay inside USB_SetCurrentMode ---\n"
+print/x *(unsigned int*)0x5000000C
+print/x *(unsigned int*)0x50000014
+print/x ((*(unsigned int*)0x50000014) & 0x1)
+print g_usb_diag_stage
+print g_usb_diag_error
+bt
+quit
