@@ -1,0 +1,15 @@
+set pagination off
+set confirm off
+target extended-remote :3333
+monitor reset halt
+tbreak USB_SetCurrentMode
+continue
+printf "\n--- hit USB_SetCurrentMode ---\n"
+print/x *(unsigned int*)0x5000000C
+print/x *(unsigned int*)0x50000038
+print/x *(unsigned int*)0x50000010
+print/x *(unsigned int*)0x50000800
+print g_usb_diag_stage
+print g_usb_diag_error
+continue
+quit

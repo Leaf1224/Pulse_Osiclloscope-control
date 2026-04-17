@@ -1,0 +1,7 @@
+指令範例表
+PCA8575 IO控制(I2C通道,IC地址,第幾IO通道,設定狀態Low=0 High=1)
+PCA8575_IO I2C1 0x20 7 1
+DAC設定電壓(I2C通道,IC地址,IC硬體的Gain設定 Low=0 High=1,第幾通道的DAC,電壓數值)
+AD5675R_SET_VOLTAGE I2C1 0x0C 1 1 1.5
+INA228量測VBUS(I2C通道,IC地址)
+INA228_READ_VBUS I2C1 0x40

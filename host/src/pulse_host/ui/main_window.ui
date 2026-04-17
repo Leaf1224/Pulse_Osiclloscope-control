@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>839</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pulse Bench Console (Qt)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="titleLabel">
+      <property name="styleSheet">
+       <string notr="true">font-size: 24px; font-weight: 700;</string>
+      </property>
+      <property name="text">
+       <string>Bench Bring-Up Console</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabMcu">
+       <attribute name="title">
+        <string>MCU</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayoutMcu">
+        <item>
+         <widget class="QGroupBox" name="groupMcuControl">
+          <property name="title">
+           <string>MCU Control</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayoutMcu">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelComPort">
+             <property name="text">
+              <string>COM Port</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="comboComPort"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="btnRefreshPorts">
+             <property name="text">
+              <string>Refresh</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="btnConnectMcu">
+             <property name="text">
+              <string>Connect MCU</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="btnPing">
+             <property name="text">
+              <string>PING</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="btnUpdateStatus">
+             <property name="text">
+              <string>Update Status</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupRealtimeStatus">
+          <property name="title">
+           <string>Realtime Status</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayoutStatus">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelStatusTitle">
+             <property name="text">
+              <string>STATUS</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="labelFaultTitle">
+             <property name="text">
+              <string>FAULT</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelStatusValue">
+             <property name="styleSheet">
+              <string notr="true">font-size: 22px; font-weight: 700;</string>
+             </property>
+             <property name="text">
+              <string>N/A</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="labelFaultValue">
+             <property name="styleSheet">
+              <string notr="true">font-size: 22px; font-weight: 700;</string>
+             </property>
+             <property name="text">
+              <string>N/A</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabScope">
+       <attribute name="title">
+        <string>Scope</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayoutScope">
+        <item>
+         <widget class="QLabel" name="labelScopePlaceholder">
+          <property name="text">
+           <string>Design your scope controls here in Qt Designer.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabGuide">
+       <attribute name="title">
+        <string>Guide</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayoutGuide">
+        <item>
+         <widget class="QTextEdit" name="textGuide">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="plainText">
+           <string>Use this tab to put operation guides and SOP notes.</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>839</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

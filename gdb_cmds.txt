@@ -1,0 +1,23 @@
+set pagination off
+set confirm off
+target extended-remote :3333
+monitor reset halt
+tbreak HAL_PCD_Init
+continue
+printf "\n--- hit HAL_PCD_Init ---\n"
+bt
+print g_usb_diag_stage
+print g_usb_diag_error
+print g_fault_diag_code
+tbreak HAL_Delay
+continue
+printf "\n--- hit HAL_Delay ---\n"
+bt
+print g_usb_diag_stage
+print g_usb_diag_error
+print g_fault_diag_code
+frame 1
+info args
+frame 2
+info args
+quit

@@ -1,0 +1,13 @@
+set pagination off
+set confirm off
+target extended-remote :3333
+monitor reset run
+shell powershell -Command "Start-Sleep -Milliseconds 500"
+interrupt
+printf "\n--- after 500ms run ---\n"
+print g_usb_diag_stage
+print g_usb_diag_error
+print g_usb_diag_dev_state
+print g_fault_diag_code
+bt
+quit

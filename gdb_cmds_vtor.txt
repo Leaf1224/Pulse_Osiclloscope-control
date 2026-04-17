@@ -1,0 +1,13 @@
+set pagination off
+set confirm off
+target extended-remote :3333
+monitor reset run
+shell powershell -Command "Start-Sleep -Milliseconds 500"
+interrupt
+printf "\n--- VTOR check ---\n"
+print/x *(unsigned int*)0xE000ED08
+print/x *(unsigned int*)(*(unsigned int*)0xE000ED08 + 0xE0)
+print g_fault_diag_code
+print g_unhandled_irqn
+bt
+quit

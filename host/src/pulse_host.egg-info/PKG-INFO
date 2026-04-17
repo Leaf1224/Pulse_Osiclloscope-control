@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: pulse-host
+Version: 0.1.0
+Summary: V1 host CLI for STM32 controlled short-circuit pulse platform
+Requires-Python: >=3.10
+Requires-Dist: pyserial>=3.5
+Requires-Dist: pyvisa>=1.14.1
+Requires-Dist: pypdf>=4.2.0
+Requires-Dist: pymupdf>=1.24.0
+Requires-Dist: pytesseract>=0.3.13
+Requires-Dist: pillow>=10.4.0
+Provides-Extra: qt
+Requires-Dist: PySide6>=6.8; extra == "qt"
