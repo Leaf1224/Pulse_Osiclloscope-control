@@ -6,158 +6,833 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>839</width>
-    <height>573</height>
+    <width>1480</width>
+    <height>940</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Pulse Bench Console (Qt)</string>
+   <string>Pulse Bench Console</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget {
+    background: #f6f4ee;
+    color: #1f2937;
+    font-family: "Segoe UI";
+    font-size: 13px;
+}
+QFrame#headerFrame, QFrame.cardFrame, QFrame.sidePanel {
+    background: #fffdf8;
+    border: 1px solid #d7d2c7;
+    border-radius: 16px;
+}
+QGroupBox {
+    border: 1px solid #d8d3c8;
+    border-radius: 14px;
+    margin-top: 12px;
+    font-weight: 700;
+    background: #fffdfa;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 6px;
+}
+QPushButton {
+    background: #f7f1e2;
+    border: 1px solid #cbbd95;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: #efe4c3;
+}
+QPushButton:pressed {
+    background: #e3d4ab;
+}
+QPushButton#accentButton {
+    background: #d97706;
+    color: white;
+    border-color: #b45309;
+}
+QPushButton#accentButton:hover {
+    background: #ea8f22;
+}
+QLineEdit, QComboBox, QPlainTextEdit, QTextEdit {
+    background: white;
+    border: 1px solid #d2ccbf;
+    border-radius: 10px;
+    padding: 6px 8px;
+}
+QTabWidget::pane {
+    border: 1px solid #d7d2c7;
+    border-radius: 14px;
+    top: -1px;
+    background: #fffdfa;
+}
+QTabBar::tab {
+    background: #e9e3d5;
+    border: 1px solid #d1c9b7;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 9px 18px;
+    margin-right: 4px;
+    font-weight: 700;
+}
+QTabBar::tab:selected {
+    background: #fffdfa;
+}
+QLabel#titleLabel {
+    font-size: 28px;
+    font-weight: 800;
+}
+QLabel#subtitleLabel {
+    color: #5b6470;
+    font-size: 14px;
+}
+QLabel.valueLabel {
+    font-size: 22px;
+    font-weight: 800;
+}
+QLabel.mutedLabel {
+    color: #6b7280;
+}
+QFrame#logFrame {
+    background: #fffdfa;
+    border: 1px solid #d8d3c8;
+    border-radius: 14px;
+}
+</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>16</number>
+    </property>
+    <property name="leftMargin">
+     <number>20</number>
+    </property>
+    <property name="topMargin">
+     <number>20</number>
+    </property>
+    <property name="rightMargin">
+     <number>20</number>
+    </property>
+    <property name="bottomMargin">
+     <number>20</number>
+    </property>
     <item>
-     <widget class="QLabel" name="titleLabel">
-      <property name="styleSheet">
-       <string notr="true">font-size: 24px; font-weight: 700;</string>
-      </property>
-      <property name="text">
-       <string>Bench Bring-Up Console</string>
-      </property>
+     <widget class="QFrame" name="headerFrame">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="leftMargin">
+        <number>20</number>
+       </property>
+       <property name="topMargin">
+        <number>18</number>
+       </property>
+       <property name="rightMargin">
+        <number>20</number>
+       </property>
+       <property name="bottomMargin">
+        <number>18</number>
+       </property>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="titleLabel">
+           <property name="text">
+            <string>Bench Bring-Up 操作台</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="subtitleLabel">
+           <property name="text">
+            <string>新版 Qt 介面骨架：主分頁、子分頁、彈出設定、個人參數檔</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QFrame" name="activeProfileCard">
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::NoFrame</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QLabel" name="labelActiveProfileTitle">
+            <property name="text">
+             <string>目前參數設定</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-weight: 700; color: #5b6470;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelActiveProfileValue">
+            <property name="text">
+             <string>Default</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 20px; font-weight: 800;</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelActiveProfileMeta">
+            <property name="text">
+             <string>COM / Scope / 33250A 預設值</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: #6b7280;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QPushButton" name="btnOpenSettings">
+           <property name="text">
+            <string>個人參數設定</string>
+           </property>
+           <property name="objectName">
+            <string>accentButton</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnReloadProfiles">
+           <property name="text">
+            <string>重新讀取設定</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnOpenClassicGui">
+           <property name="text">
+            <string>開啟舊版控制台</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </item>
     <item>
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="mainTabs">
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tabMcu">
+      <widget class="QWidget" name="tabBench">
        <attribute name="title">
-        <string>MCU</string>
+        <string>Bench</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayoutMcu">
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="spacing">
+         <number>14</number>
+        </property>
         <item>
-         <widget class="QGroupBox" name="groupMcuControl">
+         <widget class="QGroupBox" name="groupOverview">
           <property name="title">
-           <string>MCU Control</string>
+           <string>整合概覽</string>
           </property>
-          <layout class="QGridLayout" name="gridLayoutMcu">
+          <layout class="QGridLayout" name="gridLayout">
            <item row="0" column="0">
-            <widget class="QLabel" name="labelComPort">
-             <property name="text">
-              <string>COM Port</string>
+            <widget class="QFrame" name="cardMcu">
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
+             <property name="objectName">
+              <string>cardFrame</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_6">
+              <item>
+               <widget class="QLabel" name="labelCardMcuTitle">
+                <property name="text">
+                 <string>MCU</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: 700; color: #6b7280;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelMcuSummary">
+                <property name="text">
+                 <string>未連線</string>
+                </property>
+                <property name="propertyClass">
+                 <string>valueLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="comboComPort"/>
+            <widget class="QFrame" name="cardScope">
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
+             </property>
+             <property name="objectName">
+              <string>cardFrame</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item>
+               <widget class="QLabel" name="labelCardScopeTitle">
+                <property name="text">
+                 <string>示波器</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: 700; color: #6b7280;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelScopeSummary">
+                <property name="text">
+                 <string>未連線</string>
+                </property>
+                <property name="propertyClass">
+                 <string>valueLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QPushButton" name="btnRefreshPorts">
-             <property name="text">
-              <string>Refresh</string>
+            <widget class="QFrame" name="cardGenerator">
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
+             <property name="objectName">
+              <string>cardFrame</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QLabel" name="labelCardGeneratorTitle">
+                <property name="text">
+                 <string>33250A</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: 700; color: #6b7280;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelGeneratorSummary">
+                <property name="text">
+                 <string>未連線</string>
+                </property>
+                <property name="propertyClass">
+                 <string>valueLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QPushButton" name="btnConnectMcu">
-             <property name="text">
-              <string>Connect MCU</string>
+           <item row="0" column="3">
+            <widget class="QFrame" name="cardCapture">
+             <property name="frameShape">
+              <enum>QFrame::Shape::NoFrame</enum>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QPushButton" name="btnPing">
-             <property name="text">
-              <string>PING</string>
+             <property name="objectName">
+              <string>cardFrame</string>
              </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QPushButton" name="btnUpdateStatus">
-             <property name="text">
-              <string>Update Status</string>
-             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <item>
+               <widget class="QLabel" name="labelCardCaptureTitle">
+                <property name="text">
+                 <string>截圖</string>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">font-weight: 700; color: #6b7280;</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelCaptureSummary">
+                <property name="text">
+                 <string>尚未擷取</string>
+                </property>
+                <property name="propertyClass">
+                 <string>valueLabel</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </widget>
            </item>
           </layout>
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="groupRealtimeStatus">
-          <property name="title">
-           <string>Realtime Status</string>
+         <widget class="QSplitter" name="splitterBench">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
-          <layout class="QGridLayout" name="gridLayoutStatus">
-           <item row="0" column="0">
-            <widget class="QLabel" name="labelStatusTitle">
-             <property name="text">
-              <string>STATUS</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="labelFaultTitle">
-             <property name="text">
-              <string>FAULT</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="labelStatusValue">
-             <property name="styleSheet">
-              <string notr="true">font-size: 22px; font-weight: 700;</string>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="labelFaultValue">
-             <property name="styleSheet">
-              <string notr="true">font-size: 22px; font-weight: 700;</string>
-             </property>
-             <property name="text">
-              <string>N/A</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tabScope">
-       <attribute name="title">
-        <string>Scope</string>
-       </attribute>
-       <layout class="QVBoxLayout" name="verticalLayoutScope">
-        <item>
-         <widget class="QLabel" name="labelScopePlaceholder">
-          <property name="text">
-           <string>Design your scope controls here in Qt Designer.</string>
-          </property>
+          <widget class="QTabWidget" name="benchSubTabs">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="tabBenchMcu">
+            <attribute name="title">
+             <string>MCU</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_10">
+             <item>
+              <widget class="QGroupBox" name="groupMcuConnection">
+               <property name="title">
+                <string>連線與快速操作</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_2">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelQuickCom">
+                  <property name="text">
+                   <string>COM Port</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="editQuickCom">
+                  <property name="text">
+                   <string>COM20</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QPushButton" name="btnQuickConnectMcu">
+                  <property name="text">
+                   <string>連接 MCU</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QPushButton" name="btnQuickBenchCheck">
+                  <property name="text">
+                   <string>Bench 檢查</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                 <widget class="QLabel" name="labelMcuPanelHint">
+                  <property name="text">
+                   <string>這裡放常用 MCU 動作；完整欄位仍保留在舊版控制台與後續整合版本。</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: #6b7280;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tabBenchScope">
+            <attribute name="title">
+             <string>示波器</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_11">
+             <item>
+              <widget class="QGroupBox" name="groupScopeQuick">
+               <property name="title">
+                <string>示波器快速操作</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_3">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelScopeMode">
+                  <property name="text">
+                   <string>模式</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboScopeMode">
+                  <item>
+                   <property name="text">
+                    <string>usb</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>lan</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QPushButton" name="btnScopeIdentify">
+                  <property name="text">
+                   <string>Identify</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QPushButton" name="btnScopeCapture">
+                  <property name="text">
+                   <string>立即截圖</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                 <widget class="QLabel" name="labelScopeHint">
+                  <property name="text">
+                   <string>這裡適合放示波器常用控制；像 Trigger、Timebase、Capture 會做成比較乾淨的表單與彈窗。</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: #6b7280;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="tabBenchGenerator">
+            <attribute name="title">
+             <string>33250A</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_12">
+             <item>
+              <widget class="QGroupBox" name="groupGeneratorQuick">
+               <property name="title">
+                <string>33250A 快速操作</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_4">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="labelGenMode">
+                  <property name="text">
+                   <string>模式</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QComboBox" name="comboGenMode">
+                  <item>
+                   <property name="text">
+                    <string>visa</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>serial</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="0" column="2">
+                 <widget class="QPushButton" name="btnGenIdentify">
+                  <property name="text">
+                   <string>Identify</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="3">
+                 <widget class="QPushButton" name="btnGenOutputOn">
+                  <property name="text">
+                   <string>Output ON</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0" colspan="4">
+                 <widget class="QLabel" name="labelGenHint">
+                  <property name="text">
+                   <string>這裡放 33250A 的常用動作；波形、頻率、振幅、Trigger Source 會在後續版面中做成卡片式設定。</string>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: #6b7280;</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+          <widget class="QFrame" name="rightActionPanel">
+           <property name="frameShape">
+            <enum>QFrame::Shape::NoFrame</enum>
+           </property>
+           <property name="objectName">
+            <string>sidePanel</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <property name="leftMargin">
+             <number>14</number>
+            </property>
+            <property name="topMargin">
+             <number>14</number>
+            </property>
+            <property name="rightMargin">
+             <number>14</number>
+            </property>
+            <property name="bottomMargin">
+             <number>14</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="labelQuickActionsTitle">
+              <property name="text">
+               <string>快速工作流</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">font-size: 18px; font-weight: 800;</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnActionBenchCheck">
+              <property name="text">
+               <string>一鍵自檢</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnActionConnectAll">
+              <property name="text">
+               <string>連線檢查</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnActionPulseCapture">
+              <property name="text">
+               <string>Pulse 首尾截圖</string>
+              </property>
+              <property name="objectName">
+               <string>accentButton</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnActionOpenCaptureFolder">
+              <property name="text">
+               <string>開啟截圖資料夾</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupCurrentPreset">
+              <property name="title">
+               <string>目前參數摘要</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="labelPresetComTitle">
+                 <property name="text">
+                  <string>MCU</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="labelPresetComValue">
+                 <property name="text">
+                  <string>COM20 / 115200</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">font-weight: 700;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="labelPresetScopeTitle">
+                 <property name="text">
+                  <string>Scope</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="labelPresetScopeValue">
+                 <property name="text">
+                  <string>USB VISA</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">font-weight: 700;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="labelPresetGenTitle">
+                 <property name="text">
+                  <string>33250A</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="labelPresetGenValue">
+                 <property name="text">
+                  <string>VISA / PULS</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">font-weight: 700;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="labelPresetCaptureTitle">
+                 <property name="text">
+                  <string>Capture</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="labelPresetCaptureValue">
+                 <property name="text">
+                  <string>captures/</string>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">font-weight: 700;</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
        </layout>
       </widget>
       <widget class="QWidget" name="tabGuide">
        <attribute name="title">
-        <string>Guide</string>
+        <string>操作說明</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayoutGuide">
+       <layout class="QVBoxLayout" name="verticalLayout_14">
         <item>
-         <widget class="QTextEdit" name="textGuide">
+         <widget class="QTextBrowser" name="textGuide">
+          <property name="html">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;h3&gt;Bench Workflow&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;先確認 MCU、示波器、33250A 都能 Identify。&lt;/li&gt;&lt;li&gt;在個人參數設定裡存好你自己的 COM、VISA、Capture 路徑。&lt;/li&gt;&lt;li&gt;從 Bench 分頁進入常用動作；更細的設定放在子分頁或設定視窗。&lt;/li&gt;&lt;li&gt;需要整理版面時，直接用 Qt Designer 打開 main_window.ui。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;這版是新的 UI 骨架，先專注把介面做乾淨，控制邏輯可以逐步接回來。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+      </layout>
+      </widget>
+      <widget class="QWidget" name="tabProfiles">
+       <attribute name="title">
+        <string>參數摘要</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QTextEdit" name="textProfilePreview">
           <property name="readOnly">
            <bool>true</bool>
           </property>
           <property name="plainText">
-           <string>Use this tab to put operation guides and SOP notes.</string>
+           <string>這裡會顯示目前個人參數設定的摘要與 JSON 預覽。</string>
           </property>
          </widget>
         </item>
        </layout>
       </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="logFrame">
+      <property name="frameShape">
+       <enum>QFrame::Shape::NoFrame</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_16">
+       <property name="leftMargin">
+        <number>14</number>
+       </property>
+       <property name="topMargin">
+        <number>14</number>
+       </property>
+       <property name="rightMargin">
+        <number>14</number>
+       </property>
+       <property name="bottomMargin">
+        <number>14</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="labelLogTitle">
+         <property name="text">
+          <string>操作紀錄</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 17px; font-weight: 800;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPlainTextEdit" name="textLog">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>180</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>GUI ready</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="btnClearLog">
+           <property name="text">
+            <string>清空紀錄</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnSaveLog">
+           <property name="text">
+            <string>儲存紀錄</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -167,8 +842,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>839</width>
-     <height>33</height>
+     <width>1480</width>
+     <height>22</height>
     </rect>
    </property>
   </widget>

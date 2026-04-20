@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1180</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>個人參數設定</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background: #f7f5ef;
+    color: #1f2937;
+    font-family: "Segoe UI";
+    font-size: 13px;
+}
+QFrame, QListWidget, QTabWidget::pane, QGroupBox {
+    background: #fffdfa;
+    border: 1px solid #d8d3c8;
+    border-radius: 14px;
+}
+QPushButton {
+    background: #f7f1e2;
+    border: 1px solid #cbbd95;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: #efe4c3;
+}
+QLineEdit, QComboBox, QPlainTextEdit {
+    background: white;
+    border: 1px solid #d2ccbf;
+    border-radius: 10px;
+    padding: 6px 8px;
+}
+QTabBar::tab {
+    background: #e9e3d5;
+    border: 1px solid #d1c9b7;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 8px 16px;
+    margin-right: 4px;
+    font-weight: 700;
+}
+QTabBar::tab:selected {
+    background: #fffdfa;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>18</number>
+   </property>
+   <property name="topMargin">
+    <number>18</number>
+   </property>
+   <property name="rightMargin">
+    <number>18</number>
+   </property>
+   <property name="bottomMargin">
+    <number>18</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="labelDialogTitle">
+     <property name="text">
+      <string>個人參數設定與預設檔</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 24px; font-weight: 800;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelDialogSubtitle">
+     <property name="text">
+      <string>可新增多組 profile，保存自己常用的 MCU / 示波器 / 33250A / 截圖設定。</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #6b7280;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Orientation::Horizontal</enum>
+     </property>
+     <widget class="QFrame" name="profilePane">
+      <property name="frameShape">
+       <enum>QFrame::Shape::NoFrame</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="labelProfilesTitle">
+         <property name="text">
+          <string>Profiles</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">font-size: 18px; font-weight: 800;</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QListWidget" name="listProfiles"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="btnProfileNew">
+           <property name="text">
+            <string>新增</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnProfileClone">
+           <property name="text">
+            <string>複製</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnProfileDelete">
+           <property name="text">
+            <string>刪除</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QTabWidget" name="settingsTabs">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tabGeneral">
+       <attribute name="title">
+        <string>General</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayoutGeneral">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelProfileName">
+          <property name="text">
+           <string>Profile Name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="editProfileName"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelOperator">
+          <property name="text">
+           <string>Operator</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="editOperator"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelConfigPath">
+          <property name="text">
+           <string>Config Path</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="editConfigPath"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelCaptureFolder">
+          <property name="text">
+           <string>Capture Folder</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="editCaptureFolder"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelNotes">
+          <property name="text">
+           <string>Notes</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QPlainTextEdit" name="editNotes"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabMcu">
+       <attribute name="title">
+        <string>MCU</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayoutMcu">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelMcuCom">
+          <property name="text">
+           <string>Default COM</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="editMcuPort"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelMcuBaudrate">
+          <property name="text">
+           <string>Baudrate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="editMcuBaudrate"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelMcuTimeout">
+          <property name="text">
+           <string>Timeout (s)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="editMcuTimeout"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabScope">
+       <attribute name="title">
+        <string>Scope</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayoutScope">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelScopeMode">
+          <property name="text">
+           <string>Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboScopeMode">
+          <item><property name="text"><string>usb</string></property></item>
+          <item><property name="text"><string>lan</string></property></item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelScopeResource">
+          <property name="text">
+           <string>VISA Resource</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="editScopeResource"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelScopeHost">
+          <property name="text">
+           <string>LAN Host</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="editScopeHost"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelScopePort">
+          <property name="text">
+           <string>LAN Port</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="editScopePort"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelScopeTriggerSource">
+          <property name="text">
+           <string>Trigger Source</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboScopeTriggerSource">
+          <item><property name="text"><string>CH1</string></property></item>
+          <item><property name="text"><string>CH2</string></property></item>
+          <item><property name="text"><string>CH3</string></property></item>
+          <item><property name="text"><string>CH4</string></property></item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="labelScopeTriggerLevel">
+          <property name="text">
+           <string>Trigger Level (V)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="editScopeTriggerLevel"/>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="labelScopeSweep">
+          <property name="text">
+           <string>Trigger Sweep</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QComboBox" name="comboScopeSweep">
+          <item><property name="text"><string>AUTO</string></property></item>
+          <item><property name="text"><string>NORMAL</string></property></item>
+         </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="labelScopeTimebase">
+          <property name="text">
+           <string>Timebase (s/div)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="editScopeTimebase"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabGenerator">
+       <attribute name="title">
+        <string>33250A</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayoutGen">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelGenMode">
+          <property name="text">
+           <string>Mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="comboGenMode">
+          <item><property name="text"><string>visa</string></property></item>
+          <item><property name="text"><string>serial</string></property></item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelGenResource">
+          <property name="text">
+           <string>VISA Resource</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="editGenResource"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="labelGenPort">
+          <property name="text">
+           <string>Serial Port</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="editGenPort"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="labelGenBaudrate">
+          <property name="text">
+           <string>Baudrate</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="editGenBaudrate"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="labelGenFunction">
+          <property name="text">
+           <string>Function</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="comboGenFunction">
+          <item><property name="text"><string>PULS</string></property></item>
+          <item><property name="text"><string>SIN</string></property></item>
+          <item><property name="text"><string>SQU</string></property></item>
+          <item><property name="text"><string>RAMP</string></property></item>
+          <item><property name="text"><string>NOIS</string></property></item>
+          <item><property name="text"><string>DC</string></property></item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="labelGenFreq">
+          <property name="text">
+           <string>Frequency (Hz)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="editGenFrequency"/>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="labelGenAmp">
+          <property name="text">
+           <string>Amplitude (Vpp)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="editGenAmplitude"/>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="labelGenOffset">
+          <property name="text">
+           <string>Offset (V)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="editGenOffset"/>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="labelGenTrigger">
+          <property name="text">
+           <string>Trigger Source</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QComboBox" name="comboGenTrigger">
+          <item><property name="text"><string>IMM</string></property></item>
+          <item><property name="text"><string>EXT</string></property></item>
+          <item><property name="text"><string>BUS</string></property></item>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabCapture">
+       <attribute name="title">
+        <string>Capture</string>
+       </attribute>
+       <layout class="QFormLayout" name="formLayoutCapture">
+        <item row="0" column="0">
+         <widget class="QLabel" name="labelCaptureTimeout">
+          <property name="text">
+           <string>Capture Timeout (s)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="editCaptureTimeout"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="labelCaptureFile">
+          <property name="text">
+           <string>Capture File</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="editCaptureFile"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="btnSaveProfiles">
+       <property name="text">
+        <string>儲存設定</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnCloseDialog">
+       <property name="text">
+        <string>關閉</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

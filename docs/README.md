@@ -28,4 +28,8 @@ This workspace keeps requirements and reference material separate from implement
 - `context/codex_fw_sw_context_v1_zh.md`
 - `context/codex_fw_sw_context_v1_en.md`
 - `hardware_baseline.md`
+- `33250A整合操作說明.md`
+- `Type-C連接與問題紀錄.md`
+- `目前設備可先做的操作流程.md`
+- `instruments/33250A.pdf`
 - `instruments/DSO-X-4024G-programmer.pdf`

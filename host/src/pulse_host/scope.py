@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import socket
+import time
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -90,6 +91,24 @@ class ScopeClient:
 
     def single(self) -> None:
         self.write(":SINGLE")
+
+    def trigger_event(self) -> bool:
+        value = self.query(":TER?")
+        try:
+            return bool(int(value.strip() or "0"))
+        except ValueError as exc:
+            raise RuntimeError(f"Unexpected :TER? response: {value!r}") from exc
+
+    def clear_trigger_event(self) -> None:
+        self.trigger_event()
+
+    def wait_for_trigger_event(self, timeout_s: float = 1.0, poll_interval_s: float = 0.05) -> bool:
+        deadline = time.time() + max(0.05, timeout_s)
+        while time.time() < deadline:
+            if self.trigger_event():
+                return True
+            time.sleep(max(0.01, poll_interval_s))
+        return False
 
     def clear(self) -> None:
         self.write(":CDISPLAY")
